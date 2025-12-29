@@ -1,0 +1,21 @@
+const phrases = [
+    "اللهم صلِّ وسلم على نبينا محمد",
+    "سبحان الله وبحمده",
+    "أستغفر الله وأتوب إليه",
+    "لا إله إلا الله",
+    "الحمد لله",
+    "الله أكبر"
+];
+
+self.addEventListener('message', (event) => {
+    if (event.data === 'start') {
+        setInterval(() => {
+            const text = phrases[Math.floor(Math.random() * phrases.length)];
+            self.registration.showNotification('ذكر الله', {
+                body: text,
+                icon: 'https://cdn-icons-png.flaticon.com/512/2972/2972531.png',
+                tag: 'thikr'
+            });
+        }, 300000); 
+    }
+});
